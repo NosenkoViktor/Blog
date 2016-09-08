@@ -1,0 +1,24 @@
+﻿@model BlogProject.Concrete.EFUserRepository
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <div>
+         @foreach(var u in Model.Users.OrderBy(m => m.Age))
+         {
+             <h3>@u.FirstName @u.LastName</h3>
+             <p>Age: @u.Age </p>
+             <p>EMail: @u.Email </p>
+             <p>Fone: @u.Fone </p>
+             
+         }
+    </div>
+</body>
+</html>

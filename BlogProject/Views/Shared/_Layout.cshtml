@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Blog</title>
+        <meta name="description" content="Statham blog">
+        <link rel="stylesheet" href="../../Content/css/normalize.css">
+        <link rel="stylesheet" href="../../Content/css/main.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <h1>BLOG<span>Login</span></h1>
+        </header>
+
+        <div class="page">
+        <div class="info">
+            <h2>Jason Statham</h2>
+        </div>
+        <div class="left-side">
+            <div class="avatar">
+                <img src="../../Content/images/avatar.jpg">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home")</li>
+                    <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home")</li>
+                    <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home")</li>
+                    @helper CurrentItem(String item)
+                    {
+                        if (item == ViewContext.RouteData.Values["action"].ToString())
+                        {
+                             @:class="selected"
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="search">
+                <input type="text">
+                <button></button>
+            </div>
+        </div>
+
+        <div class="right-side">
+            @RenderBody()
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".menu").click(function () {
+            $(this).parent.addClass("selected");
+        });
+    </script>
+</body>
+</html>
+
+

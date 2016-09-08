@@ -1,0 +1,15 @@
+table {
+    font-family: "Calisto MT";
+    border-spacing: 5px;
+    margin: 10px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+td, th {
+    border-left-color: black;
+    padding: 5px 10px 10px 0;
+    text-align: left;
+    font-size: 15px;
+    border-bottom-style: groove;
+}
