@@ -7,11 +7,12 @@ using System.Web;
 
 namespace BlogProject.Models
 {
-    [Table("UserTable")]
+    [Table("Users")]
     public class UserModel
     {
         [Key]
         public int ID { get; set; }
+        public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }

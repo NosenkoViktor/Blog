@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BlogProject.Models
 {
-    [Table("CommentTable")]
+    [Table("Comments")]
     public class CommentModel
     {
         public int UserId { get; set; }

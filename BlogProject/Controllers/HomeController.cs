@@ -11,13 +11,7 @@ namespace BlogProject.Controllers
 {
     public class HomeController : Controller
     {
-        private IUserRepository repository;
-
-        public HomeController(IUserRepository usersRepository)
-        {
-            repository = usersRepository;
-        }
-
+        
         public ActionResult RecentPosts()
         {
             return View();
@@ -28,16 +22,15 @@ namespace BlogProject.Controllers
             return View();
         }
 
-        public ActionResult Information()
-        {
-            return View();
-        }
-
-
-        public ActionResult Test()
+        public ActionResult Information(int id)
         {
             EFUserRepository model = new EFUserRepository();
-            return View(model);
+            UserModel person = new UserModel();
+            foreach (var p in model.Users)
+            {
+                if (id == p.ID) person = p;
+            }
+            return View(person);
         }
     }
 }

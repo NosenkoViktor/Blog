@@ -1,27 +1,28 @@
-﻿<link rel="stylesheet" href="../../Content/css/info.css">
+﻿@model BlogProject.Models.UserModel
+<link rel="stylesheet" href="../../Content/css/info.css">
 <table class="user-inform">
         <tr>
             <th>First Name: </th>
-            <th>Jason</th>
+            <th>@Model.FirstName</th>
         </tr>
         <tr>
             <th>Last Name: </th>
-            <th>Statham</th>
+            <th>@Model.LastName</th>
         </tr>
         <tr>
             <th>Age: </th>
-            <th>49</th>
+            <th>@(Model.Age == null ? "Unknown" : Model.Age.ToString())</th>
         </tr>
         <tr>
             <th>Fone: </th>
-            <th>+3806559788</th>
+            <th>@(Model.Fone == null ? "Unknown" : Model.Fone)</th>
         </tr>
         <tr>
             <th>Mail: </th>
-            <th>StathamPishuStatusuVK@gmail.com</th>
+            <th>@Model.Email</th>
         </tr>
         <tr>
             <th>Skype: </th>
-            <th>StathamSkype</th>
+            <th>@(Model.Skype == null ? "Unknown" : Model.Skype)</th>
         </tr>
 </table>

@@ -53,3 +53,5 @@ F:\C#\WebProject\Blog\BlogProject\BlogProject\bin\EntityFramework.SqlServer.xml
 F:\C#\WebProject\Blog\BlogProject\BlogProject\bin\Moq.xml
 F:\C#\WebProject\Blog\BlogProject\BlogProject\bin\Ninject.xml
 F:\C#\WebProject\Blog\BlogProject\BlogProject\bin\ru\EntityFramework.SqlServer.resources.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject\obj\Debug\BlogProject.Migrations.InitialCreate.resources
+F:\C#\WebProject\Blog\BlogProject\BlogProject\obj\Debug\BlogProject.csproj.GenerateResource.Cache

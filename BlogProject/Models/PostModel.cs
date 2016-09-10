@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BlogProject.Models
 {
-    [Table("PostTable")]
+    [Table("Posts")]
     public class PostModel
     {
         public int UserId { get; set; }

@@ -7,13 +7,13 @@ using System.Web;
 
 namespace BlogProject.Concrete
 {
-    public class EFPostRepository : IUserRepository
+    public class EFPostRepository : IPostRepository
     {
         private EFDbContext context = new EFDbContext();
 
-        public IQueryable<UserModel> Users
+        public IQueryable<PostModel> Posts
         {
-            get { return context.Users; }
+            get { return context.Posts; }
         }
     }
 }

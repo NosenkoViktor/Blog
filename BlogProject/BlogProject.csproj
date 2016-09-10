@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Abstract\IPostRepository.cs" />
+    <Compile Include="Abstract\ICommentRepository.cs" />
     <Compile Include="Concrete\EFCommentRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFPostRepository.cs" />
@@ -121,6 +123,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Migrations\201609101618230_InitialCreate.cs" />
+    <Compile Include="Migrations\201609101618230_InitialCreate.Designer.cs">
+      <DependentUpon>201609101618230_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -170,13 +177,17 @@
     <Content Include="Views\Home\Arhive.cshtml" />
     <Content Include="Views\Home\Information.cshtml" />
     <Content Include="Views\Home\RecentPosts.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609101618230_InitialCreate.resx">
+      <DependentUpon>201609101618230_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
