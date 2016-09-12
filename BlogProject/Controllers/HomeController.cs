@@ -11,26 +11,46 @@ namespace BlogProject.Controllers
 {
     public class HomeController : Controller
     {
-        
-        public ActionResult RecentPosts()
+        EFUserRepository model = new EFUserRepository();
+        EFPostRepository modelPost = new EFPostRepository();
+
+        public ActionResult RecentPosts(int id)
         {
-            return View();
+            ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
+            PostsViewModel viewModel = new PostsViewModel()
+            {
+                PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
+            };
+            return View(viewModel);
         }
 
-        public ActionResult Arhive()
+        public FileContentResult GetImage(int id)
         {
-            return View();
+            UserModel person = model.Users.FirstOrDefault(u => u.ID == id);
+            if (person != null)
+                return File(person.ImageData, person.ImageMimeType);
+            else return null;
+        }
+
+        public ViewResult Arhive(int id)
+        {
+            ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
+            PostsViewModel viewModel = new PostsViewModel()
+            {
+                PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
+            };
+            return View(viewModel);
         }
 
         public ActionResult Information(int id)
         {
-            EFUserRepository model = new EFUserRepository();
-            UserModel person = new UserModel();
+            UserModel user = new UserModel();
+            ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
             foreach (var p in model.Users)
             {
-                if (id == p.ID) person = p;
+                if (id == p.ID) user = p;
             }
-            return View(person);
+            return View(user);
         }
     }
 }

@@ -130,6 +130,10 @@ a {
     padding: 0 0 40px 0;
 }
 
+.post hr {
+        margin: 40px 0;
+}
+
 .like {
     float: right;
     padding: 0 5px;

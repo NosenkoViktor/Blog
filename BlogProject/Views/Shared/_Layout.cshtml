@@ -16,11 +16,15 @@
 
         <div class="page">
         <div class="info">
-            <h2>Jason Statham</h2>
+            <h2>@ViewBag.Person.FirstName @ViewBag.Person.LastName</h2>
         </div>
         <div class="left-side">
             <div class="avatar">
-                <img src="../../Content/images/avatar.jpg">
+                @if (ViewBag.Person.ImageData != null)
+                {
+                    <img width="165" height="200" src="@Url.Action("GetImage", "UserModel", new { Model.ID })" />
+                }
+                else {<img width="165" height="200" src="../../Content/images/guest_user.png" />}
             </div>
             <div class="menu">
                 <ul>
@@ -28,7 +32,7 @@
                     <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home")</li>
                     <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home")</li>
                     @helper CurrentItem(String item)
-                    {
+{
                         if (item == ViewContext.RouteData.Values["action"].ToString())
                         {
                              @:class="selected"

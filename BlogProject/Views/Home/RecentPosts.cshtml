@@ -1,56 +1,19 @@
-﻿@{
+﻿@model BlogProject.Models.PostsViewModel
+@{
     ViewBag.Title = "Blog";
 }
 
-@for (int i = 0; i < 3; i++) { 
+
 <div class="post">
-                <h3>Big company advertising<span>August 30, 2016 20:57 PM</span></h3>
-                <p>American Airlines doesn't know what to say.
-
-                    And they're having a lot of trouble saying it.
-
-                    They're making a fortune this year due to low oil prices, and one way to manage shareholder expectations for the future is to put some of that profit into brand advertising. And so, they hired a fancy ad agency and started to run full-page, two-sided, glossy inserts in newspapers. The single ad I'm looking at cost at least $100,000. And I might be one of a hundred people who are actually reading it.
-
-                    The copy-dense ad includes references to babies, red-eyes, noise, middle seats, lessons learned, 'relinquish', making the best of the situation and the ability to sleep anywhere. All told in an odd third-person, referring to the hero as "they" not "you."
-
-                    With a layout that's so confusing that there's a big arrow that says "start here".</p>
-
-                <p>Some things worth remembering:</p>
-
-                    <p>Ads can still work, especially ads with consistent budgets, excellent copywriting, smart frequency and a thoughtful strategy. Easier said than done.
-                    Great products work far better than great ads do. And the key part of a great service-based product is service, which is totally up to you, the marketer.
-                    Direct marketing is measured, brand marketing is long-term and aspirational.
-                    Simple test for brand marketing: If I can substitute one company for another and have the ad still make sense, it's not a good ad.
-                    For thirty years, the airlines have relentlessly trained travelers to spend as little as possible on a seat, offering generic alternatives and contemptuous, confusing pricing policies. To blame the state of travel on the passenger ("Let's move that conversation from us and turn it onto them..." said Fernand Fernandez, VP of global marketing at AA) doesn't feel like the foundation for a great marketing campaign, does it?
-
-                    The lesson for anyone spending money on ads: it pays to be consistent, generous and thoughtful when you build an ad campaign.
-                    They're making a fortune this year due to low oil prices, and one way to manage shareholder expectations for the future is to put some of that profit into brand advertising. And so, they hired a fancy ad agency and started to run full-page, two-sided, glossy inserts in newspapers. The single ad I'm looking at cost at least $100,000. And I might be one of a hundred people who are actually reading it.
-
-                    The copy-dense ad includes references to babies, red-eyes, noise, middle seats, lessons learned, 'relinquish', making the best of the situation and the ability to sleep anywhere. All told in an odd third-person, referring to the hero as "they" not "you."
-
-                    With a layout that's so confusing that there's a big arrow that says "start here".
-
-                    Some things worth remembering:
-
-                    Ads can still work, especially ads with consistent budgets, excellent copywriting, smart frequency and a thoughtful strategy. Easier said than done.
-                    Great products work far better than great ads do. And the key part of a great service-based product is service, which is totally up to you, the marketer.
-                    Direct marketing is measured, brand marketing is long-term and aspirational.
-                    Simple test for brand marketing: If I can substitute one company for another and have the ad still make sense, it's not a good ad.
-                    They're making a fortune this year due to low oil prices, and one way to manage shareholder expectations for the future is to put some of that profit into brand advertising. And so, they hired a fancy ad agency and started to run full-page, two-sided, glossy inserts in newspapers. The single ad I'm looking at cost at least $100,000. And I might be one of a hundred people who are actually reading it.
-
-                    The copy-dense ad includes references to babies, red-eyes, noise, middle seats, lessons learned, 'relinquish', making the best of the situation and the ability to sleep anywhere. All told in an odd third-person, referring to the hero as "they" not "you."
-
-                    With a layout that's so confusing that there's a big arrow that says "start here".
-
-                    Some things worth remembering:
-
-
-                    Simple test for brand marketing: If I can substitute one company for another and have the ad still make sense, it's not a good ad.</p>
+    @foreach (var p in Model.PostView) 
+    {
+         <h3>@p.Title<span>@p.PostTime.ToShortDateString()</span></h3>
+                <p>@p.PostText</p>
                 <div class="like">
-                    <img src="../../Content/images/like.png"> 11
-                    <img src="../../Content/images/dislike.png"> 5
+                    <img src="../../Content/images/like.png"> @p.Like.ToString()
+                    <img src="../../Content/images/dislike.png"> @p.Dislike.ToString()
                 </div>
-                <hr>
+                <hr/>
+    }
     </div>
-}
 

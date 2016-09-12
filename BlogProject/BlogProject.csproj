@@ -130,6 +130,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\PostsViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <Content Include="Content\css\normalize.css" />
     <Content Include="Content\images\avatar.jpg" />
     <Content Include="Content\images\dislike.png" />
+    <Content Include="Content\images\guest_user.png" />
     <Content Include="Content\images\like.png" />
     <Content Include="Content\images\search.jpg" />
     <Content Include="Content\images\search.png" />
