@@ -1,0 +1,17 @@
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\obj\Debug\BlogProject.Tests.csprojResolveAssemblyReference.cache
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\BlogProject.Tests.dll.config
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\BlogProject.Tests.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\BlogProject.Tests.pdb
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\BlogProject.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\Castle.Core.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\Moq.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\EntityFramework.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\Ninject.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\BlogProject.pdb
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\Castle.Core.xml
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\Moq.xml
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\EntityFramework.xml
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\Ninject.xml
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\bin\Debug\ru\EntityFramework.resources.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\obj\Debug\BlogProject.Tests.dll
+F:\C#\WebProject\Blog\BlogProject\BlogProject.Tests\obj\Debug\BlogProject.Tests.pdb

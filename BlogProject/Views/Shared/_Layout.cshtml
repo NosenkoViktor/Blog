@@ -28,9 +28,9 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home")</li>
-                    <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home")</li>
-                    <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home")</li>
+                    <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home", new { id = ViewBag.Person.ID }, null)</li>
+                    <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home", new { id = ViewBag.Person.ID }, null)</li>
+                    <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home", new { id = ViewBag.Person.ID }, null)</li>
                     @helper CurrentItem(String item)
 {
                         if (item == ViewContext.RouteData.Values["action"].ToString())
