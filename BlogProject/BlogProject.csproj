@@ -118,6 +118,7 @@
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFPostRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -128,6 +129,8 @@
       <DependentUpon>201609101618230_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountModels\LogInModel.cs" />
+    <Compile Include="Models\AccountModels\RegisterUserModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\PostsViewModel.cs" />
@@ -135,11 +138,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\account.css" />
     <Content Include="Content\css\arhives.css" />
     <Content Include="Content\css\info.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\normalize.css" />
-    <Content Include="Content\images\avatar.jpg" />
     <Content Include="Content\images\dislike.png" />
     <Content Include="Content\images\guest_user.png" />
     <Content Include="Content\images\like.png" />
@@ -179,6 +182,11 @@
     <Content Include="Views\Home\Arhive.cshtml" />
     <Content Include="Views\Home\Information.cshtml" />
     <Content Include="Views\Home\RecentPosts.cshtml" />
+    <Content Include="Views\Shared\AccountLayout.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

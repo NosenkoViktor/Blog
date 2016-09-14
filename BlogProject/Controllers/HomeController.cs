@@ -16,12 +16,12 @@ namespace BlogProject.Controllers
 
         public ActionResult RecentPosts(int id)
         {
-            ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
-            PostsViewModel viewModel = new PostsViewModel()
-            {
-                PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
-            };
-            return View(viewModel);
+                ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
+                PostsViewModel viewModel = new PostsViewModel()
+                {
+                    PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
+                };
+                return View(viewModel);
         }
 
         public FileContentResult GetImage(int id)

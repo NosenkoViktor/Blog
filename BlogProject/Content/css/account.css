@@ -1,0 +1,28 @@
+﻿h2 {
+    padding: 0px;
+    margin: 10px;
+    font-size: 24px;
+    color: #a9c7f8;
+    position: relative;
+}
+
+fieldset {
+    background-color: #faffff;
+}
+
+p {
+    font-size: 16px;
+    margin: 10px;
+}
+
+.editor-label {
+    margin: 10px
+}
+
+.editor-field {
+    margin: 10px
+}
+
+legend {
+    margin: 10px;
+}

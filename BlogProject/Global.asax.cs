@@ -24,7 +24,7 @@ namespace BlogProject
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("RoutOne", "Blog/{action}/{id}", new { controller = "Home", action = "RecentPosts", id = 1}); 
+            routes.MapRoute("RoutOne", "{controller}/{action}/{id}", new { controller = "Home", action = "RecentPosts", id = 1}); 
             routes.MapRoute(
                 "Default", // Имя маршрута
                 "{controller}/{action}/{id}", // URL-адрес с параметрами

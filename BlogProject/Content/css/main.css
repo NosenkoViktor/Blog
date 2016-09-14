@@ -18,6 +18,11 @@
     font-size: small;
 }
 
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
 h1{
     color: white;
     font-family: "Century Gothic";
