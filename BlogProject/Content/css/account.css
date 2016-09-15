@@ -25,4 +25,24 @@ p {
 
 legend {
     margin: 10px;
+    font-size: 20px;
+}
+
+.validation-summary-errors li{
+    margin: 2px;
+    color: red;
+}
+
+.view-bag {
+    color:red;
+    margin: 10px;
+}
+
+.input-validation-error {
+    background-color: #ffe7e7;
+}
+
+.field-validation-error {
+    color: red;
+    font-style: oblique;
 }

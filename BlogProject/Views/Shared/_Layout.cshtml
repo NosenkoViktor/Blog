@@ -32,7 +32,7 @@
                     <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home", new { id = ViewBag.Person.ID }, null)</li>
                     <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home", new { id = ViewBag.Person.ID }, null)</li>
                     @helper CurrentItem(String item)
-{
+                    {
                         if (item == ViewContext.RouteData.Values["action"].ToString())
                         {
                              @:class="selected"
