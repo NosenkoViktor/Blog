@@ -132,6 +132,7 @@
     <Compile Include="Models\AccountModels\LogInModel.cs" />
     <Compile Include="Models\AccountModels\RegisterUserModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\PostModel.cs" />
     <Compile Include="Models\PostsViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -142,6 +143,7 @@
     <Content Include="Content\css\arhives.css" />
     <Content Include="Content\css\info.css" />
     <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\news.css" />
     <Content Include="Content\css\normalize.css" />
     <Content Include="Content\images\dislike.png" />
     <Content Include="Content\images\guest_user.png" />
@@ -187,6 +189,9 @@
     <Content Include="Views\Account\Register.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_SearchPartial.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

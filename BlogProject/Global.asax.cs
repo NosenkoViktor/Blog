@@ -24,11 +24,11 @@ namespace BlogProject
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("RoutOne", "{controller}/{action}/{id}", new { controller = "Home", action = "RecentPosts", id = 1}); 
+            routes.MapRoute("RoutOne", "{controller}/{action}/{username}", new { controller = "Home", action = "RecentPosts", username = "Petya"}); 
             routes.MapRoute(
                 "Default", // Имя маршрута
-                "{controller}/{action}/{id}", // URL-адрес с параметрами
-                new { controller = "Home", action = "RecentPosts", id = UrlParameter.Optional } // Параметры по умолчанию
+                "{controller}/{action}/{username}", // URL-адрес с параметрами
+                new { controller = "Home", action = "RecentPosts", username = UrlParameter.Optional } // Параметры по умолчанию
             );
 
         }

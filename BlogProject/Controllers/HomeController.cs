@@ -14,14 +14,15 @@ namespace BlogProject.Controllers
         EFUserRepository model = new EFUserRepository();
         EFPostRepository modelPost = new EFPostRepository();
 
-        public ActionResult RecentPosts(int id)
+        public ActionResult RecentPosts(string username)
         {
-                ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
-                PostsViewModel viewModel = new PostsViewModel()
-                {
-                    PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
-                };
-                return View(viewModel);
+            int id = GetUserId(username);
+            ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
+            PostsViewModel viewModel = new PostsViewModel()
+            {
+                PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
+            };
+            return View(viewModel);
         }
 
         public FileContentResult GetImage(int id)
@@ -32,8 +33,9 @@ namespace BlogProject.Controllers
             else return null;
         }
 
-        public ViewResult Arhive(int id)
+        public ViewResult Arhive(string username)
         {
+            int id = GetUserId(username);
             ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
             PostsViewModel viewModel = new PostsViewModel()
             {
@@ -42,8 +44,9 @@ namespace BlogProject.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Information(int id)
+        public ActionResult Information(string username)
         {
+            int id = GetUserId(username);
             UserModel user = new UserModel();
             ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
             foreach (var p in model.Users)
@@ -51,6 +54,21 @@ namespace BlogProject.Controllers
                 if (id == p.ID) user = p;
             }
             return View(user);
+        }
+
+        public int GetUserId(string username)
+        {
+            UserModel currentUser = model.Users.First(u => u.Username == username);
+            int id = currentUser.ID;
+            return id;
+        }
+
+        public ActionResult News()
+        {
+            NewsViewModel news = new NewsViewModel();
+            news.PostView = modelPost.Posts;
+            news.UserView = model.Users;
+            return View(news);
         }
     }
 }

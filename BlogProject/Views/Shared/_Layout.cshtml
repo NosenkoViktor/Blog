@@ -11,7 +11,7 @@
 <body>
     <div class="wrap">
         <header class="header">
-            <h1>BLOG<span>@Html.ActionLink("Login", "LogIn", "Account")</span></h1>
+            <h1>BLOG<span>@Html.Partial("_LogOnPartial")</span></h1>
         </header>
 
         <div class="page">
@@ -28,9 +28,9 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home", new { id = ViewBag.Person.ID }, null)</li>
-                    <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home", new { id = ViewBag.Person.ID }, null)</li>
-                    <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home", new { id = ViewBag.Person.ID }, null)</li>
+                    <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home", new { username = ViewBag.Person.Username }, null)</li>
+                    <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home", new { username = ViewBag.Person.Username }, null)</li>
+                    <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home", new { username = ViewBag.Person.Username }, null)</li>
                     @helper CurrentItem(String item)
                     {
                         if (item == ViewContext.RouteData.Values["action"].ToString())
@@ -41,8 +41,7 @@
                 </ul>
             </div>
             <div class="search">
-                <input type="text">
-                <button></button>
+                @Html.Partial("_SearchPartial")
             </div>
         </div>
 

@@ -8,10 +8,10 @@ namespace BlogProject.Models.AccountModels
 {
     public class LogInModel
     {
-        [Required(ErrorMessage = "Enter USER NAME please")]
+        [Required(ErrorMessage = "Enter Username please")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Enter PASSWORD please")]
+        [Required(ErrorMessage = "Enter password please")]
         public string Password { get; set; }
     }
 }

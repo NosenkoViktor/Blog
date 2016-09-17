@@ -12,6 +12,10 @@ namespace BlogProject.Controllers
 {
     public class AccountController : Controller
     {
+        UserModel user = new UserModel();
+        EFDbContext context = new EFDbContext();
+        
+
         public ActionResult Register()
         {
             return View();
@@ -22,11 +26,16 @@ namespace BlogProject.Controllers
             return View();
         }
 
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("News", "Home");
+        }
+
         [HttpPost]
         public ActionResult Register(RegisterUserModel model)
-        {
-            UserModel user = new UserModel();
-            EFDbContext context = new EFDbContext();
+        {  
             int count = context.Users.Count(u => u.Username == model.Username);
             if (ModelState.IsValid && count == 0)
             {
@@ -37,7 +46,8 @@ namespace BlogProject.Controllers
                 user.Password = model.Password;
                 context.Users.Add(user);
                 context.SaveChanges();
-                return RedirectToAction("logIn", "Account");
+                string actionString = "Information/" + model.Username;
+                return RedirectToAction(actionString, "Home", model.Username);
             }
             else
             {
@@ -46,10 +56,30 @@ namespace BlogProject.Controllers
             }
         }
 
-        public JsonResult CheckUserName(string username)
+        [HttpPost]
+        public ActionResult LogIn(LogInModel model)
         {
-            var result = Membership.FindUsersByName(username).Count == 0;
-            return Json(result, JsonRequestBehavior.AllowGet);
+            int count = context.Users.Count(u => u.Username == model.Username);
+            if (ModelState.IsValid && count == 1)
+            {
+                UserModel currentUser = context.Users.First(u => u.Username == model.Username);
+                if (currentUser.Password == model.Password)
+                {
+                    FormsAuthentication.SetAuthCookie(model.Username, true);
+                    string actionString = "Information/" + currentUser.Username;
+                    return RedirectToAction(actionString, "Home", currentUser.Username);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Password");
+                    return View();
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "We did not find you in the database. Check the correct input Username and Password or register");
+                return View();
+            }
         }
     }
 }

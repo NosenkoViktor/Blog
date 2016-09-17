@@ -1,0 +1,40 @@
+﻿@model BlogProject.Models.NewsViewModel
+@{
+    Layout = "~/Views/Shared/AccountLayout.cshtml";
+}
+@{
+    ViewBag.Title = "News";
+}
+
+<link rel="stylesheet" href="../../Content/css/news.css">
+
+<div class="post">
+    @foreach (var p in Model.PostView.OrderByDescending(i => i.PostTime).Take(10)) 
+    {
+        <div class="user-info">
+            <div class="avatar">
+                @if ((Model.UserView.First(u =>u.ID == p.UserId).ImageData) != null)
+                {
+                    <img width="165" height="200" src="@Url.Action("GetImage", "UserModel", new { p.UserId })" />
+                }
+                else {<img width="165" height="200" src="../../Content/images/guest_user.png" />}
+            </div>
+            <div class="user-first-last-name">
+                 @Html.ActionLink(Model.UserView.First(u =>u.ID == p.UserId).FirstName + " " +Model.UserView.First(u =>u.ID == p.UserId).LastName, 
+                                                        "Information", 
+                                                        "Home", 
+                                                        new { username =  Model.UserView.First(u =>u.ID == p.UserId).Username}, 
+                                                        null)
+            </div>
+        </div>
+        <div class="content">
+         <h3>@p.Title<span>@p.PostTime.ToShortDateString()</span></h3>
+                <p>@p.PostText</p>            
+        </div>
+        <div class="like">
+                    <img src="../../Content/images/like.png"> @p.Like.ToString()
+                    <img src="../../Content/images/dislike.png"> @p.Dislike.ToString()
+                </div>
+        <hr />
+    }
+</div>

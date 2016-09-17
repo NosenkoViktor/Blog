@@ -1,0 +1,55 @@
+﻿.post {
+    padding: 0 0 40px 0;
+    font-family: "Calisto MT";
+}
+
+.post hr {
+    margin: 40px 0;
+}
+
+h3 {
+    color: #4289ff;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+p {
+    margin: 10px 0;
+    text-align: justify;
+    text-indent: 25px;
+}
+
+.user-info {
+    float: left;
+}
+
+.content {
+    margin: 0 0 0 180px;
+    min-height: 220px;
+    padding: 5px;
+}
+
+.content span {
+    float: right;
+    margin: 8px;
+    color: rgba(0, 139, 139, 0.78);
+    font-size: 15px;
+}
+
+.user-first-last-name {
+    width: 145px;
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #9ac7f8;
+    color: #0c637a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration:underline;
+}

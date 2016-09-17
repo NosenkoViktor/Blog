@@ -11,6 +11,7 @@
 <p>
     Enter your user name and password. @Html.ActionLink("Sing up", "Register", "Account") if you do not have an account.
 </p>
+@Html.ValidationSummary()
 
 @using (Html.BeginForm()) {
     <div>
@@ -22,6 +23,7 @@
             </div>
             <div class="editor-field">
                 @Html.TextBoxFor(m => m.Username)
+                @Html.ValidationMessageFor(m => m.Username)
             </div>
 
             <div class="editor-label">
@@ -29,6 +31,7 @@
             </div>
             <div class="editor-field">
                 @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
             </div>
 
             <p>
