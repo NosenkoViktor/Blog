@@ -6,10 +6,20 @@ table {
     font-weight: 700;
 }
 
-td, th {
+td {
+    color: rgba(0, 139, 139, 0.78);
     border-left-color: black;
-    padding: 5px 10px 10px 0;
+    padding: 10px 10px 10px 0;
     text-align: left;
     font-size: 15px;
     border-bottom-style: groove;
+}
+
+th {
+     padding: 5px 10px 10px 0;
+     font-size: 16px;
+     color: #404040;
+     border-bottom-color: #585858;
+     border-bottom-style: double;
+     border-bottom-width: 2px;
 }

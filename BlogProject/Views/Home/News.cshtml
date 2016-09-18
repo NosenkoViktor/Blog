@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="content">
-         <h3>@p.Title<span>@p.PostTime.ToShortDateString()</span></h3>
+         <h3>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)<span>@p.PostTime.ToShortDateString()</span></h3>
                 <p>@p.PostText</p>            
         </div>
         <div class="like">

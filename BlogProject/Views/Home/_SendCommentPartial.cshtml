@@ -1,0 +1,11 @@
+﻿@model BlogProject.Models.CurrentPostModel
+@using (Html.BeginForm()) {
+    <div class="comment">
+            <div class="comment-editor">
+                @Html.TextAreaFor(m => m.UserComment.CommentText, 5, 94, null)
+            </div>
+            <p>
+                <input type="submit" value="Send Comment" />
+            </p>
+    </div>
+}

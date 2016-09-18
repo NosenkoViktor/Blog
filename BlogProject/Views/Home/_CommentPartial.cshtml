@@ -1,0 +1,26 @@
+﻿@model BlogProject.Models.CurrentPostModel
+<link rel="stylesheet" href="../../Content/css/comments.css">
+
+@foreach (var p in Model.Comments.OrderBy(c => c.CommentTime))
+{
+    <div class="comment-avatar">
+                @if (Model.Users.FirstOrDefault(u => u.ID == p.UserId).ImageData != null)
+                {
+                    <img width="55" height="66" src="@Url.Action("GetImage", "UserModel", new { p.UserId })" />
+                }
+                else {<img width="55" height="66" src="../../Content/images/guest_user.png" />}
+    </div>
+    <div class="user">
+        @Html.ActionLink(Model.Users.First(u => u.ID == p.UserId).FirstName+" "+Model.Users.First(u => u.ID == p.UserId).LastName, 
+                         "Information", 
+                         "Home", 
+                         new { username =  Model.Users.First(u =>u.ID == p.UserId).Username}, 
+                         null)
+        <span>@p.CommentTime</span>
+    </div>
+    <div class="comment-text">
+        @p.CommentText
+    <hr/>
+    </div>
+    <div class="bottom"><hr height="1px"/></div>
+}

@@ -13,6 +13,7 @@ namespace BlogProject.Controllers
     {
         EFUserRepository model = new EFUserRepository();
         EFPostRepository modelPost = new EFPostRepository();
+        EFCommentRepository modelComment = new EFCommentRepository();
 
         public ActionResult RecentPosts(string username)
         {
@@ -69,6 +70,17 @@ namespace BlogProject.Controllers
             news.PostView = modelPost.Posts;
             news.UserView = model.Users;
             return View(news);
+        }
+
+        public ActionResult CurrentPost(int postId)
+        {
+            int userId = modelPost.Posts.First(p => p.PostId == postId).UserId;
+            ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == userId);
+            CurrentPostModel currentPost = new CurrentPostModel();
+            currentPost.Post = modelPost.Posts.First(p => p.PostId == postId);
+            currentPost.Users = model.Users;
+            currentPost.Comments = modelComment.Comments.Where(c => c.PostId == postId);
+            return View(currentPost);
         }
     }
 }

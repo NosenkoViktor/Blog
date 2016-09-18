@@ -12,6 +12,7 @@
 table {
     border-spacing: 1px;
     margin: 0px;
+    color: #2f2f2f;
 }
 td, th {
     padding: 5px 50px 5px 0;

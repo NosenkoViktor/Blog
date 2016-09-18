@@ -1,0 +1,31 @@
+﻿.comment-avatar {
+    float: left;
+    padding: 5px;
+}
+
+.comment-text {
+    margin: 0 0 0 65px;
+    min-height: 45px;
+    text-align: justify;
+}
+
+.user span {
+    color: #499a7c;
+    font-size: 14px;
+    margin: 0px 5px 0 0;
+}
+
+.user {
+    padding: 5px 0px;
+}
+
+.comment-text hr {
+    margin: 10px;
+    padding: 0;
+}
+
+.bottom hr {
+    color: #7abb84;
+    margin: 0 5px;
+    border: solid 1px;
+}

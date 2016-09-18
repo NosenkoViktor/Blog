@@ -1,0 +1,24 @@
+﻿@model BlogProject.Models.CurrentPostModel
+@{
+    ViewBag.Title = "CurrentPost";
+}
+
+
+<div class="current-post">
+    <h3>@Model.Post.Title<span>@Model.Post.PostTime.ToShortDateString()</span></h3>
+    <p>@Model.Post.PostText</p>
+    <div class="like">
+        <img src="../../Content/images/like.png"> @Model.Post.Like.ToString()
+        <img src="../../Content/images/dislike.png"> @Model.Post.Dislike.ToString()
+    </div>
+    <hr />
+    <div class="comments-title">Comments</div>
+    <div class="post-bottom">
+        <div class="comments">
+        @Html.Partial("_CommentPartial")
+        </div>
+        <div class="send-comments">
+        @Html.Partial("_SendCommentPartial")
+        </div>
+    </div>
+</div>

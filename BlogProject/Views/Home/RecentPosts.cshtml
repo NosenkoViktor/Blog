@@ -7,7 +7,7 @@
 <div class="post">
     @foreach (var p in Model.PostView) 
     {
-         <h3>@p.Title<span>@p.PostTime.ToShortDateString()</span></h3>
+         <h3>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)<span>@p.PostTime.ToShortDateString()</span></h3>
                 <p>@p.PostText</p>
                 <div class="like">
                     <img src="../../Content/images/like.png"> @p.Like.ToString()

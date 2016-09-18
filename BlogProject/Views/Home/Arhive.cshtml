@@ -5,15 +5,15 @@
 <link rel="stylesheet" href="../../Content/css/arhives.css">
 <div class="arhiv">
         <table>
-            <tr style="color: #1255ed">
+            <tr>
                 <th style="text-align: center" width="120px">Date</th>
                 <th style="text-align: center" width="700px">Name of post</th>
             </tr>
     @foreach (var p in Model.PostView)
     {
         <tr>
-            <th>@p.PostTime.ToShortDateString()</th>
-            <th>@p.Title</th>
+            <td style="text-align:center">@p.PostTime.ToShortDateString()</td>
+            <td>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)</td>
         </tr>
     }
         </table>
