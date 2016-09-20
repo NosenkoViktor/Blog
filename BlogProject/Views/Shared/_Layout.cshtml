@@ -22,12 +22,13 @@
             <div class="avatar">
                 @if (ViewBag.Person.ImageData != null)
                 {
-                    <img width="165" height="200" src="@Url.Action("GetImage", "UserModel", new { Model.ID })" />
+                    <img width="165" height="200" src="@Url.Action("GetImage", "Home", new { id = ViewBag.Person.ID })" />
                 }
                 else {<img width="165" height="200" src="../../Content/images/guest_user.png" />}
             </div>
             <div class="menu">
                 <ul>
+                    <li @CurrentItem("News")>@Html.ActionLink("News", "News", "Home", new { username = ViewBag.Person.Username }, null)</li>
                     <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home", new { username = ViewBag.Person.Username }, null)</li>
                     <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home", new { username = ViewBag.Person.Username }, null)</li>
                     <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home", new { username = ViewBag.Person.Username }, null)</li>

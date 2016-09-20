@@ -18,7 +18,18 @@
         @Html.Partial("_CommentPartial")
         </div>
         <div class="send-comments">
-        @Html.Partial("_SendCommentPartial")
+        @using (Html.BeginForm("AddComment", "Home", FormMethod.Post))
+        {
+            <div class="comment">
+            <div class="comment-editor">
+                @Html.TextAreaFor(m => m.UserComment.CommentText, 5, 94, null)
+                @Html.Hidden("postId", ViewContext.RouteData.Values["postId"])
+            </div>
+            <p>                
+            Comments can be posted only @Html.ActionLink("registred", "Register", "Account") users!!!<input type="submit" value="Send Comment" />
+            </p>
+            </div>
+        }
         </div>
     </div>
 </div>

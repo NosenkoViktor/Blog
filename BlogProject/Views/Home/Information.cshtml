@@ -3,6 +3,7 @@
     ViewBag.Title = "Information";
 }
 <link rel="stylesheet" href="../../Content/css/info.css">
+
 <table class="user-inform">
         <tr>
             <th>First Name: </th>
@@ -13,7 +14,7 @@
             <th>@Model.LastName</th>
         </tr>
         <tr>
-            <th>Age: </th>
+            <th>Full age: </th>
             <th>@(Model.Age == 0 ? "Unknown" : Model.Age.ToString())</th>
         </tr>
         <tr>
@@ -29,3 +30,7 @@
             <th>@(Model.Skype == null ? "Unknown" : Model.Skype)</th>
         </tr>
 </table>
+@if (User.Identity.IsAuthenticated && User.Identity.Name == ViewContext.RouteData.Values["username"].ToString())
+{
+    @Html.ActionLink("Change user information", "ChangeInformation", "Home", new { username = User.Identity.Name }, null)
+}

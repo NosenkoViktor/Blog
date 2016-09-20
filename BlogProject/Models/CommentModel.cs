@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BlogProject.Models
 {
@@ -11,6 +12,7 @@ namespace BlogProject.Models
     public class CommentModel
     {
         public int UserId { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public int PostId { get; set; }
         [Key]
         public int CommentId { get; set; }

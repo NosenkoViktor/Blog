@@ -5,7 +5,7 @@
 
 
 <div class="post">
-    @foreach (var p in Model.PostView) 
+    @foreach (var p in Model.PostView.OrderByDescending(p => p.PostTime).Take(3)) 
     {
          <h3>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)<span>@p.PostTime.ToShortDateString()</span></h3>
                 <p>@p.PostText</p>

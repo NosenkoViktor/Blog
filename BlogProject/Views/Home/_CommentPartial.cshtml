@@ -6,7 +6,7 @@
     <div class="comment-avatar">
                 @if (Model.Users.FirstOrDefault(u => u.ID == p.UserId).ImageData != null)
                 {
-                    <img width="55" height="66" src="@Url.Action("GetImage", "UserModel", new { p.UserId })" />
+                    <img width="55" height="66" src="@Url.Action("GetImage", "Home", new { id = p.UserId })" />
                 }
                 else {<img width="55" height="66" src="../../Content/images/guest_user.png" />}
     </div>
@@ -22,5 +22,5 @@
         @p.CommentText
     <hr/>
     </div>
-    <div class="bottom"><hr height="1px"/></div>
+    <div class="bottom"><hr/></div>
 }

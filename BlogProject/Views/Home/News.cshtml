@@ -1,6 +1,6 @@
 ﻿@model BlogProject.Models.NewsViewModel
 @{
-    Layout = "~/Views/Shared/AccountLayout.cshtml";
+    if (!User.Identity.IsAuthenticated) {Layout = "~/Views/Shared/AccountLayout.cshtml";}
 }
 @{
     ViewBag.Title = "News";
@@ -15,7 +15,7 @@
             <div class="avatar">
                 @if ((Model.UserView.First(u =>u.ID == p.UserId).ImageData) != null)
                 {
-                    <img width="165" height="200" src="@Url.Action("GetImage", "UserModel", new { p.UserId })" />
+                    <img width="165" height="200" src="@Url.Action("GetImage", "Home", new { id = p.UserId })" />
                 }
                 else {<img width="165" height="200" src="../../Content/images/guest_user.png" />}
             </div>

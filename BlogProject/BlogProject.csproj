@@ -195,8 +195,8 @@
     <Content Include="Views\Shared\_SearchPartial.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Home\CurrentPost.cshtml" />
-    <Content Include="Views\Home\_SendCommentPartial.cshtml" />
     <Content Include="Views\Home\_CommentPartial.cshtml" />
+    <Content Include="Views\Home\ChangeInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
