@@ -16,11 +16,19 @@ p {
 }
 
 .editor-label {
-    margin: 10px
+    margin: 5px 10px;
 }
 
 .editor-field {
-    margin: 10px
+    margin: 10px;
+}
+
+.editor-field input {
+    border-radius: 5px;
+    border-color: #7abb84;
+    height: 25px;
+    border-style: solid;
+    border-width: 2px;
 }
 
 legend {
@@ -45,4 +53,14 @@ legend {
 .field-validation-error {
     color: red;
     font-style: oblique;
+}
+
+.button input {
+    padding: 10px 70px;
+    margin: 0 10px;
+    color: white;
+    float:left;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #7abb84;
 }

@@ -13,7 +13,16 @@
     {
         <tr>
             <td style="text-align:center">@p.PostTime.ToShortDateString()</td>
-            <td>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)</td>
+            <td>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)
+            @if (ViewContext.RouteData.Values["username"].ToString() == User.Identity.Name)
+            {
+                using (Html.BeginForm("DeletePost", "Home", FormMethod.Post)) 
+                {
+                    @Html.Hidden("postId", p.PostId)
+                    <td style="border:none"><input type="submit" value="Delete"/></td>
+                }
+            }
+            </td>
         </tr>
     }
         </table>

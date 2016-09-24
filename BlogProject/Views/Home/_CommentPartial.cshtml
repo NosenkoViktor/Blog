@@ -16,7 +16,16 @@
                          "Home", 
                          new { username =  Model.Users.First(u =>u.ID == p.UserId).Username}, 
                          null)
-        <span>@p.CommentTime</span>
+        <span>@p.CommentTime
+        @if (Model.Users.First(u => u.ID == p.UserId).Username == User.Identity.Name.ToString())
+        {
+            using (Html.BeginForm("DeleteComment", "Home", FormMethod.Post)) 
+            {
+                @Html.Hidden("commentId", p.CommentId)
+                @Html.Hidden("post", p.PostId)
+                <input type="submit" value="Delete comment"/>
+            }
+        }</span>
     </div>
     <div class="comment-text">
         @p.CommentText

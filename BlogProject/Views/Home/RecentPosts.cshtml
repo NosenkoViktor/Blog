@@ -3,7 +3,15 @@
     ViewBag.Title = "RecentPosts";
 }
 
-
+@if (User.Identity.IsAuthenticated && User.Identity.Name == ViewContext.RouteData.Values["username"].ToString()) 
+{ 
+    <div class="add-post">
+        @Html.ActionLink("Create new post",
+                        "AddPost", 
+                        "Home", 
+                        new { username = ViewContext.RouteData.Values["username"].ToString()}, null)
+    </div>
+}
 <div class="post">
     @foreach (var p in Model.PostView.OrderByDescending(p => p.PostTime).Take(3)) 
     {

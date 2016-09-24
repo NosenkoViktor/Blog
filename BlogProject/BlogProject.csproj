@@ -197,6 +197,7 @@
     <Content Include="Views\Home\CurrentPost.cshtml" />
     <Content Include="Views\Home\_CommentPartial.cshtml" />
     <Content Include="Views\Home\ChangeInformation.cshtml" />
+    <Content Include="Views\Home\AddPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -133,10 +133,10 @@ namespace BlogProject.Controllers
 
 
         [HttpPost]
-        public ActionResult AddComment(string postId, CurrentPostModel newComment)
+        public ActionResult AddComment(string post, CurrentPostModel newComment)
         {
             int IdForPost;
-            int.TryParse(postId, out IdForPost);
+            int.TryParse(post, out IdForPost);
             if (User.Identity.IsAuthenticated && newComment.UserComment.CommentText != null)
             {
                 CommentModel comment = new CommentModel();
@@ -151,6 +151,66 @@ namespace BlogProject.Controllers
             else 
             {
                 return RedirectToAction("LogIn", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(int commentId, int post)
+        {
+            CommentModel comment = context.Comments.FirstOrDefault(c => c.CommentId == commentId);
+            context.Comments.Remove(comment);
+            context.SaveChanges();
+            return RedirectToAction("CurrentPost", "Home", new { postId = post }); ;
+        }
+
+        public ActionResult AddPost(string username)
+        {
+            ViewBag.Person = model.Users.First(u => u.Username == User.Identity.Name);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddPost(PostModel newPost)
+        {
+            if (newPost.Title != null && newPost.PostText != null)
+            {
+                PostModel post = new PostModel();
+                post.UserId = GetUserId(User.Identity.Name.ToString());
+                post.Title = newPost.Title;
+                post.PostText = newPost.PostText;
+                post.PostTime = DateTime.Now;
+                context.Posts.Add(post);
+                context.SaveChanges();
+                return RedirectToAction("RecentPosts", "Home", new { username = User.Identity.Name.ToString() });
+            }
+            else
+            {
+                ViewBag.Person = model.Users.First(u => u.Username == User.Identity.Name);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeletePost(int postId)
+        {
+            PostModel post = context.Posts.FirstOrDefault(p => p.PostId == postId);
+            if (context.Comments.Count(c => c.PostId == postId) == 0)
+            {
+                context.Posts.Remove(post);
+                context.SaveChanges();
+                return RedirectToAction("Arhive", "Home", new { username = User.Identity.Name });
+            }
+            else
+            {
+                List<CommentModel> commentBase = context.Comments.Where(c => c.PostId == postId).ToList();
+                foreach (var c in commentBase)
+                {
+                    context.Comments.Remove(c);
+                }
+                context.SaveChanges();
+                context.Posts.Remove(post);
+                context.SaveChanges();
+                return RedirectToAction("Arhive", "Home", new { username = User.Identity.Name });
             }
         }
     }

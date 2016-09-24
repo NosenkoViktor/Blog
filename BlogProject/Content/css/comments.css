@@ -19,9 +19,19 @@
     padding: 5px 0px;
 }
 
+.user input {
+    float: right;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    padding: 2px 5px;
+    margin: 3px 0;
+}
+
 .comment-text hr {
     margin: 10px;
-    padding: 0;
+    padding: 0 5px;
 }
 
 .bottom hr {

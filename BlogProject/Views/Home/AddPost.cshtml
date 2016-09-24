@@ -1,0 +1,20 @@
+﻿@model BlogProject.Models.PostModel
+
+@Html.ValidationSummary()
+@using (Html.BeginForm("AddPost", "Home", FormMethod.Post))
+{
+    <div class="editor-label-post">
+        @Html.LabelFor(m => m.Title)
+    </div>
+    <div class="editor-field-post">
+        @Html.TextBoxFor(m => m.Title)
+    </div>
+    
+    <div class="editor-label-post">
+        @Html.LabelFor(m => m.PostText, "Text")
+    </div>
+    <div class="editor-field-post">
+        @Html.TextAreaFor(m => m.PostText)
+    </div>
+    <div class="button" ><input type="submit" value="Save" /></div>
+}

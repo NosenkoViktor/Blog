@@ -1,7 +1,7 @@
 table {
     font-family: "Calisto MT";
     border-spacing: 5px;
-    margin: 10px;
+    margin: 0px;
     font-size: 24px;
     font-weight: 700;
 }
@@ -22,4 +22,13 @@ th {
      border-bottom-color: #585858;
      border-bottom-style: double;
      border-bottom-width: 2px;
+}
+
+.arhiv input {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    padding: 2px 10px;
+    margin: 5px 0;
 }
