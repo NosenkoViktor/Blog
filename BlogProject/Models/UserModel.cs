@@ -40,5 +40,9 @@ namespace BlogProject.Models
         public byte[] ImageData { get; set; }
         [HiddenInput(DisplayValue=false)]
         public string ImageMimeType { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public string Roles { get; set; }
     }
 }

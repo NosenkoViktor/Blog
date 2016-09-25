@@ -13,8 +13,8 @@
     {
         <tr>
             <td style="text-align:center">@p.PostTime.ToShortDateString()</td>
-            <td>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)
-            @if (ViewContext.RouteData.Values["username"].ToString() == User.Identity.Name)
+            <td>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)</td>
+            @if (ViewContext.RouteData.Values["username"].ToString() == User.Identity.Name || Model.Users.First(u => u.Username == User.Identity.Name).Roles == "moderator")
             {
                 using (Html.BeginForm("DeletePost", "Home", FormMethod.Post)) 
                 {
@@ -22,7 +22,6 @@
                     <td style="border:none"><input type="submit" value="Delete"/></td>
                 }
             }
-            </td>
         </tr>
     }
         </table>

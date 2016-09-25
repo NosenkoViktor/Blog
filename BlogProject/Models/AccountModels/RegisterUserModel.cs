@@ -33,6 +33,6 @@ namespace BlogProject.Models.AccountModels
         [Required(ErrorMessage = "Repeat password name please")]
         [System.Web.Mvc.Compare("Password", ErrorMessage = "Password and confirmation do not match.")]
         public string RepeatPassword { get; set; }
-
+        
     }
 }

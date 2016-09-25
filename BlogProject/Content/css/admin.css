@@ -1,0 +1,61 @@
+﻿table {
+    font-family: "Calisto MT";
+    border-spacing: 5px;
+    margin: 0px;
+    font-size: 24px;
+    font-weight: 700;
+    border-collapse: separate;
+}
+
+td {
+    color: #27418a;
+    border-left-color: black;
+    padding: 5px 0;
+    text-align: left;
+    font-size: 15px;
+    border-bottom-style: groove;
+}
+
+th {
+     padding: 5px 10px 10px 0;
+     font-size: 16px;
+     color: #404040;
+     border-bottom-color: #585858;
+     border-bottom-style: double;
+     border-bottom-width: 2px;
+}
+
+.delete {
+    margin: 0px;
+}
+.delete input {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    padding: 2px 10px;
+    margin: 5px 0;
+}
+
+.save {
+    margin: 0px;
+}
+
+.save input {
+    background-color: #55b254;
+    color: white;
+    border-radius: 5px;
+    border-style: none;
+    padding: 2px 10px;
+    margin: 5px 0;
+}
+
+.comment {
+    width: inherit;
+    color: white;
+    background-color: #55b254;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+}

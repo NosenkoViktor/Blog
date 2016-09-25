@@ -28,6 +28,10 @@
                 }
                 else {<img width="165" height="200" src="../../Content/images/guest_user.png" />}
             </div>
+            @if(User.Identity.IsAuthenticated && ViewBag.Person.Roles == "administrator" && ViewBag.Person.Username == User.Identity.Name)
+            {
+            <div class="admin-page">@Html.ActionLink("Administrator page", "Index", "Admin")</div>
+            }
             <div class="menu">
                 <ul>
                     <li @CurrentItem("News")>@Html.ActionLink("News", "News", "Home", new { username = ViewBag.Person.Username }, null)</li>

@@ -42,7 +42,8 @@ namespace BlogProject.Controllers
             ViewBag.Person = model.Users.FirstOrDefault(u => u.ID == id);
             PostsViewModel viewModel = new PostsViewModel()
             {
-                PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime)
+                PostView = modelPost.Posts.Where(p => p.UserId == id).OrderByDescending(p => p.PostTime),
+                Users = model.Users
             };
             return View(viewModel);
         }

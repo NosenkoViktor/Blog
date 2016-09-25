@@ -35,6 +35,19 @@ h1{
     width: 155px;
     height: auto;
 }
+
+.admin-page {
+    margin: 0px 0px 8px 5px;
+    text-align: center;
+}
+.admin-page a{
+    padding: 5px 7px;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 155px;
+    color: white;
+    background-color: #efc45c;
+}
 .info h2 {
     padding: 0px;
     margin: 0px;

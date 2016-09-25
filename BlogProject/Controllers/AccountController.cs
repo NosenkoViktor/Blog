@@ -44,8 +44,10 @@ namespace BlogProject.Controllers
                 user.LastName = model.LastName;
                 user.Email = model.Email;
                 user.Password = model.Password;
+                user.Roles = "user";
                 context.Users.Add(user);
                 context.SaveChanges();
+                FormsAuthentication.SetAuthCookie(model.Username, true);
                 string actionString = "Information/" + model.Username;
                 return RedirectToAction(actionString, "Home", model.Username);
             }

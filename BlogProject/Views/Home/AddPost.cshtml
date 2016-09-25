@@ -1,5 +1,9 @@
 ﻿@model BlogProject.Models.PostModel
 
+@{
+    ViewBag.Title = "Create new post";
+}
+
 @Html.ValidationSummary()
 @using (Html.BeginForm("AddPost", "Home", FormMethod.Post))
 {

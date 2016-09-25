@@ -1,0 +1,57 @@
+﻿@model BlogProject.Models.AdminViewModel
+@{
+    Layout = "~/Views/Shared/AccountLayout.cshtml";
+}
+@{
+    ViewBag.Title = "Administraor page";
+}
+
+
+<link rel="stylesheet" href="../../Content/css/admin.css">
+@if (TempData["message"] != null) 
+    {
+     <div class="comment">@TempData["message"]</div>
+    }
+<table class="user-inform">
+        <tr>
+            <th style="text-align: center" width="70px"></th>
+            <th style="text-align: center" width="150px">Username </th>
+            <th style="text-align: center" width="150px">First Name</th>
+            <th style="text-align: center" width="150px">Last Name</th>
+            <th style="text-align: center" width="150px">E-mail</th>
+            <th style="text-align: center" width="100px">Roles</th>
+            <th style="text-align: center" width="70px"></th>
+        </tr>
+    @foreach (var u in Model.Users.OrderBy(u => u.Roles))
+    {
+        <tr>
+            <td style="text-align: center">
+            @using (Html.BeginForm("Delete", "Admin", FormMethod.Post)) 
+            {
+                @Html.Hidden("userId", u.ID)
+                <div class="delete"><input type="submit" value="Delete"/></div>
+            }
+            </td>
+            <td>@u.Username</td>
+            <td>@u.FirstName</td>
+            <td>@u.LastName</td>
+            <td>@u.Email</td>
+            @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
+            {
+            <td style="text-align: center">
+                <select id="roles" name="roles">
+                    <option disabled>Select role</option>
+                    @foreach (SelectListItem option in ViewBag.Roles)
+                    {
+                        <option value="@option.Value" @(option.Value == u.Roles ? "selected='selected'" : "")>@option.Text</option>
+                    }
+                </select>
+            </td>  
+            <td style="text-align: center">
+                @Html.Hidden("userId", u.ID)
+                <div class="save"><input type="submit" value="Save"/></div>
+            </td>
+            }
+        </tr>
+    }
+</table>

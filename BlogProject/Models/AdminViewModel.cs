@@ -5,9 +5,8 @@ using System.Web;
 
 namespace BlogProject.Models
 {
-    public class PostsViewModel
+    public class AdminViewModel
     {
-        public IEnumerable<PostModel> PostView { get; set; }
         public IEnumerable<UserModel> Users { get; set; }
     }
 }

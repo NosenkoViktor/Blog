@@ -119,6 +119,7 @@
     <Compile Include="Concrete\EFPostRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -131,6 +132,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels\LogInModel.cs" />
     <Compile Include="Models\AccountModels\RegisterUserModel.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\CurrentPostModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
@@ -141,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\account.css" />
+    <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\arhives.css" />
     <Content Include="Content\css\comments.css" />
     <Content Include="Content\css\info.css" />
@@ -198,6 +201,7 @@
     <Content Include="Views\Home\_CommentPartial.cshtml" />
     <Content Include="Views\Home\ChangeInformation.cshtml" />
     <Content Include="Views\Home\AddPost.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

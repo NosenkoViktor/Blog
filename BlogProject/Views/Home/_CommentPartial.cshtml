@@ -17,7 +17,7 @@
                          new { username =  Model.Users.First(u =>u.ID == p.UserId).Username}, 
                          null)
         <span>@p.CommentTime
-        @if (Model.Users.First(u => u.ID == p.UserId).Username == User.Identity.Name.ToString())
+        @if (Model.Users.First(u => u.ID == p.UserId).Username == User.Identity.Name.ToString() || (User.Identity.IsAuthenticated && Model.Users.First(u => u.Username == User.Identity.Name).Roles == "moderator"))
         {
             using (Html.BeginForm("DeleteComment", "Home", FormMethod.Post)) 
             {
