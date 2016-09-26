@@ -12,9 +12,14 @@ namespace BlogProject.Controllers
 {
     public class AccountController : Controller
     {
-        UserModel user = new UserModel();
-        EFDbContext context = new EFDbContext();
-        
+        private UserModel user;
+        private EFDbContext dbRepo;
+
+        public AccountController(UserModel user, EFDbContext dbRepository)
+        {
+            this.user = user;
+            dbRepo = dbRepository;
+        }
 
         public ActionResult Register()
         {
@@ -35,8 +40,8 @@ namespace BlogProject.Controllers
 
         [HttpPost]
         public ActionResult Register(RegisterUserModel model)
-        {  
-            int count = context.Users.Count(u => u.Username == model.Username);
+        {
+            int count = dbRepo.Users.Count(u => u.Username == model.Username);
             if (ModelState.IsValid && count == 0)
             {
                 user.Username = model.Username;
@@ -45,8 +50,8 @@ namespace BlogProject.Controllers
                 user.Email = model.Email;
                 user.Password = model.Password;
                 user.Roles = "user";
-                context.Users.Add(user);
-                context.SaveChanges();
+                dbRepo.Users.Add(user);
+                dbRepo.SaveChanges();
                 FormsAuthentication.SetAuthCookie(model.Username, true);
                 string actionString = "Information/" + model.Username;
                 return RedirectToAction(actionString, "Home", model.Username);
@@ -61,10 +66,10 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult LogIn(LogInModel model)
         {
-            int count = context.Users.Count(u => u.Username == model.Username);
+            int count = dbRepo.Users.Count(u => u.Username == model.Username);
             if (ModelState.IsValid && count == 1)
             {
-                UserModel currentUser = context.Users.First(u => u.Username == model.Username);
+                UserModel currentUser = dbRepo.Users.First(u => u.Username == model.Username);
                 if (currentUser.Password == model.Password)
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, true);

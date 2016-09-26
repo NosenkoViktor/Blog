@@ -11,8 +11,14 @@ namespace BlogProject.Controllers
 {
     public class AdminController : Controller
     {
-        EFDbContext context = new EFDbContext();
-        EFUserRepository usersRepository = new EFUserRepository();
+        private EFDbContext dbRepo;
+        private EFUserRepository userRepo;
+
+        public AdminController(EFDbContext dbRepository, EFUserRepository userRepository)
+        {
+            dbRepo = dbRepository;
+            userRepo = userRepository;
+        }
 
         public ActionResult Index()
         {
@@ -24,45 +30,45 @@ namespace BlogProject.Controllers
                     new SelectListItem {Text = "user", Value = "user"}
                 }, "Value", "Text");
             AdminViewModel model = new AdminViewModel();
-            model.Users = usersRepository.Users;
+            model.Users = userRepo.Users;
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Delete(int userId)
         {
-            UserModel user = context.Users.FirstOrDefault(u => u.ID == userId);
+            UserModel user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
             if (user.Roles != "administrator")
             {
-                if (context.Comments.Count(u => u.UserId == userId) == 0 && context.Posts.Count(u => u.UserId == userId) == 0)
+                if (dbRepo.Comments.Count(u => u.UserId == userId) == 0 && dbRepo.Posts.Count(u => u.UserId == userId) == 0)
                 {
-                    context.Users.Remove(user);
-                    context.SaveChanges();
+                    dbRepo.Users.Remove(user);
+                    dbRepo.SaveChanges();
                     TempData["message"] = "User whith the username: <<" + user.Username.ToString() + ">> has been successfully removed.";
                     return RedirectToAction("Index", "Admin");
                 }
                 else
                 {
-                    List<CommentModel> commentBase = context.Comments.Where(u => u.UserId == userId).ToList();
+                    List<CommentModel> commentBase = dbRepo.Comments.Where(u => u.UserId == userId).ToList();
                     foreach (var c in commentBase)
                     {
-                        context.Comments.Remove(c);
-                        context.SaveChanges();
+                        dbRepo.Comments.Remove(c);
+                        dbRepo.SaveChanges();
                     }
-                    List<PostModel> postBase = context.Posts.Where(u => u.UserId == userId).ToList();
+                    List<PostModel> postBase = dbRepo.Posts.Where(u => u.UserId == userId).ToList();
                     foreach (var p in postBase)
                     {
-                        List<CommentModel> commentForPost = context.Comments.Where(u => u.PostId == p.PostId).ToList();
+                        List<CommentModel> commentForPost = dbRepo.Comments.Where(u => u.PostId == p.PostId).ToList();
                         foreach (var comment in commentForPost)
                         {
-                            context.Comments.Remove(comment);
-                            context.SaveChanges();
+                            dbRepo.Comments.Remove(comment);
+                            dbRepo.SaveChanges();
                         }
-                        context.Posts.Remove(p);
-                        context.SaveChanges();
+                        dbRepo.Posts.Remove(p);
+                        dbRepo.SaveChanges();
                     }
-                    context.Users.Remove(user);
-                    context.SaveChanges();
+                    dbRepo.Users.Remove(user);
+                    dbRepo.SaveChanges();
                     TempData["message"] = "User whith the username: <<" + user.Username.ToString() + ">> has been successfully removed.";
                     return RedirectToAction("Index", "Admin");
                 }
@@ -77,11 +83,11 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult Save(int userId, string roles)
         {
-            UserModel user = context.Users.FirstOrDefault(u => u.ID == userId);
+            UserModel user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
             user.Roles = roles;
-            context.Users.Attach(user);
-            context.Entry(user).State = EntityState.Modified;
-            context.SaveChanges();
+            dbRepo.Users.Attach(user);
+            dbRepo.Entry(user).State = EntityState.Modified;
+            dbRepo.SaveChanges();
             TempData["message"] = "User whith the username: <<" + user.Username.ToString() + ">> has been successfully saved.";
             return RedirectToAction("Index", "Admin");
         }

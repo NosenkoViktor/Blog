@@ -1,0 +1,40 @@
+﻿@model BlogProject.Models.SearchModel
+@{
+    Layout = "~/Views/Shared/AccountLayout.cshtml";
+}
+@{
+    ViewBag.Title = "Search";
+}
+
+<link rel="stylesheet" href="../../Content/css/search.css">
+<h4>Total search results</h4>
+
+<ul class="result">
+    <li><a href=#>Users (@Model.Users.Count())</a>
+        <ul class="submenu">
+            @foreach (var p in Model.Users) 
+            {
+            <li>@Html.ActionLink(p.FirstName + " " + p.LastName, "Information", "Home", new { username = p.Username }, null)</li>
+                <hr />
+            }
+        </ul>
+    </li>
+    <li><a href=#>Posts (@Model.Post.Count())</a>
+        <ul class="submenu">
+            @foreach (var p in Model.Post) 
+            {
+            <li>@Html.ActionLink(p.Title, "CurrentPost", "Home", new { postId = p.PostId }, null)</li>
+                <hr />
+            }
+        </ul>
+    </li>
+    <li><a href=#>Comments (@Model.Comments.Count())</a>
+        <ul class="submenu">
+            @foreach (var p in Model.Comments) 
+            {
+            <li>@Html.ActionLink(p.CommentText, "CurrentPost", "Home", new { postId = p.PostId }, null)</li>
+                <hr />
+            }
+        </ul>
+    </li>
+</ul>

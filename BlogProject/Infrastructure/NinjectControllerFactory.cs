@@ -29,6 +29,8 @@ namespace BlogProject.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IUserRepository>().To<EFUserRepository>();
+            ninjectKernel.Bind<IPostRepository>().To<EFPostRepository>();
+            ninjectKernel.Bind<ICommentRepository>().To<EFCommentRepository>();
         }
     }
 }

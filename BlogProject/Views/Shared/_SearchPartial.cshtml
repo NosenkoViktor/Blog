@@ -1,2 +1,5 @@
-﻿<input type="text">
-<button></button>
+﻿@using (Html.BeginForm("SearchResult", "Home", FormMethod.Post))
+{ 
+<input type="text" name="searchtext"/>
+<div class="search-button"><input type="submit" value=""/></div>
+}

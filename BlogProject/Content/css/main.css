@@ -102,10 +102,9 @@ h1{
     display: inline-block;
     vertical-align: middle;
     border-color: #a9c7f8;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-radius: 5px;
 }
-.search button {
+.search-button input{
     margin: 0 -9px -1px -9px;
     float: right;
     width: 31px;
@@ -114,8 +113,6 @@ h1{
     vertical-align: middle;
     background: url("../images/search.png") center #a9c7f8;
     border: 0;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
 }
 
 .right-side {
