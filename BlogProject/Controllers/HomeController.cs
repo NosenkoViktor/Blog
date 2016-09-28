@@ -145,25 +145,20 @@ namespace BlogProject.Controllers
 
 
         [HttpPost]
-        public ActionResult AddComment(string post, CurrentPostModel newComment)
+        public ActionResult AddComment(int post, CurrentPostModel newComment)
         {
-            int IdForPost;
-            int.TryParse(post, out IdForPost);
-            if (User.Identity.IsAuthenticated && newComment.UserComment.CommentText != null)
-            {
-                CommentModel comment = new CommentModel();
-                comment.CommentText = newComment.UserComment.CommentText;
-                comment.CommentTime = DateTime.Now;
-                comment.PostId = IdForPost;
-                comment.UserId = userRepo.Users.First(u => u.Username == User.Identity.Name).ID;
-                dbRepo.Comments.Add(comment);
-                dbRepo.SaveChanges();
-                return RedirectToAction("CurrentPost", "Home", new { postId = IdForPost });
-            }
-            else 
-            {
-                return RedirectToAction("LogIn", "Account");
-            }
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("LogIn", "Account"); 
+            if (string.IsNullOrEmpty(newComment.UserComment.CommentText))
+                return RedirectToAction("CurrentPost", "Home", new { postId = post });
+            CommentModel comment = new CommentModel();
+            comment.CommentText = newComment.UserComment.CommentText;
+            comment.CommentTime = DateTime.Now;
+            comment.PostId = post;
+            comment.UserId = userRepo.Users.First(u => u.Username == User.Identity.Name).ID;
+            dbRepo.Comments.Add(comment);
+            dbRepo.SaveChanges();
+            return RedirectToAction("CurrentPost", "Home", new { postId = post });
         }
 
         [HttpPost]
