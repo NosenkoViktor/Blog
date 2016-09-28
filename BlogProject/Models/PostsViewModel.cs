@@ -7,7 +7,7 @@ namespace BlogProject.Models
 {
     public class PostsViewModel
     {
-        public IEnumerable<PostModel> PostView { get; set; }
-        public IEnumerable<UserModel> Users { get; set; }
+        public IEnumerable<Posts> PostView { get; set; }
+        public IEnumerable<Users> Users { get; set; }
     }
 }

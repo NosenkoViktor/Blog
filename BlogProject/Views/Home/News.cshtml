@@ -39,8 +39,7 @@
                 }            
         </div>
         <div class="like">
-                    <img src="../../Content/images/like.png"> @p.Like.ToString()
-                    <img src="../../Content/images/dislike.png"> @p.Dislike.ToString()
+                    @Html.Partial("_LikesFormPartial") 
                 </div>
         <hr />
     }

@@ -11,7 +11,7 @@ namespace BlogProject.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public IQueryable<CommentModel> Comments
+        public IQueryable<Comments> Comments
         {
             get { return context.Comments; }
         }

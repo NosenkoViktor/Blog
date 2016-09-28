@@ -7,8 +7,8 @@ namespace BlogProject.Models
 {
     public class SearchModel
     {
-        public IEnumerable<UserModel> Users { get; set; }
-        public IEnumerable<PostModel> Post { get; set; }
-        public IEnumerable<CommentModel> Comments { get; set; }
+        public IEnumerable<Users> Users { get; set; }
+        public IEnumerable<Posts> Post { get; set; }
+        public IEnumerable<Comments> Comments { get; set; }
     }
 }

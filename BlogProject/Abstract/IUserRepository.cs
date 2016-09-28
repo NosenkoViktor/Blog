@@ -9,6 +9,6 @@ namespace BlogProject.Abstract
 {
     public interface IUserRepository
     {
-        IQueryable<UserModel> Users { get; }
+        IQueryable<Users> Users { get; }
     }
 }

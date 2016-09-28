@@ -12,10 +12,10 @@ namespace BlogProject.Controllers
 {
     public class AccountController : Controller
     {
-        private UserModel user;
+        private Users user;
         private EFDbContext dbRepo;
 
-        public AccountController(UserModel user, EFDbContext dbRepository)
+        public AccountController(Users user, EFDbContext dbRepository)
         {
             this.user = user;
             dbRepo = dbRepository;
@@ -69,7 +69,7 @@ namespace BlogProject.Controllers
             int count = dbRepo.Users.Count(u => u.Username == model.Username);
             if (ModelState.IsValid && count == 1)
             {
-                UserModel currentUser = dbRepo.Users.First(u => u.Username == model.Username);
+                Users currentUser = dbRepo.Users.First(u => u.Username == model.Username);
                 if (currentUser.Password == model.Password)
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, true);

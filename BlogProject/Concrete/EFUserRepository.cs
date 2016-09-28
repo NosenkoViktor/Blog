@@ -11,7 +11,7 @@ namespace BlogProject.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        public IQueryable<UserModel> Users
+        public IQueryable<Users> Users
         {
             get { return context.Users; }
         }

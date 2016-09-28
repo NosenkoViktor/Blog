@@ -41,9 +41,9 @@ namespace BlogProject.Controllers
 
         public FileContentResult GetImage(int id)
         {
-            UserModel person = userRepo.Users.FirstOrDefault(u => u.ID == id);
+            UserModel person = new UserModel() { user = userRepo.Users.FirstOrDefault(u => u.ID == id) };
             if (person != null)
-                return File(person.ImageData, person.ImageMimeType);
+                return File(person.user.ImageData, person.user.ImageMimeType);
             else return null;
         }
 
@@ -62,31 +62,31 @@ namespace BlogProject.Controllers
         public ActionResult Information(string username)
         {
             int id = GetUserId(username);
-            UserModel user = new UserModel();
+            UserModel model = new UserModel();
             ViewBag.Person = userRepo.Users.FirstOrDefault(u => u.ID == id);
             foreach (var p in userRepo.Users)
             {
-                if (id == p.ID) user = p;
+                if (id == p.ID) model.user = p;
             }
-            return View(user);
+            return View(model);
         }
 
         [Authorize]
         public ActionResult ChangeInformation(string username)
         {
             int id = GetUserId(username);
-            UserModel user = new UserModel();
+            UserModel model = new UserModel();
             ViewBag.Person = userRepo.Users.FirstOrDefault(u => u.ID == id);
             foreach (var p in userRepo.Users)
             {
-                if (id == p.ID) user = p;
+                if (id == p.ID) model.user = p;
             }
-            return View(user);
+            return View(model.user);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult ChangeInformation(UserModel user, HttpPostedFileBase image)
+        public ActionResult ChangeInformation(Users user, HttpPostedFileBase image)
         {
             ViewBag.Person = userRepo.Users.First(u => u.Username == User.Identity.Name);
             if (ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace BlogProject.Controllers
 
         public int GetUserId(string username)
         {
-            UserModel currentUser = userRepo.Users.First(u => u.Username == username);
+            Users currentUser = userRepo.Users.First(u => u.Username == username);
             int id = currentUser.ID;
             return id;
         }
@@ -151,7 +151,7 @@ namespace BlogProject.Controllers
                 return RedirectToAction("LogIn", "Account"); 
             if (string.IsNullOrEmpty(newComment.UserComment.CommentText))
                 return RedirectToAction("CurrentPost", "Home", new { postId = post });
-            CommentModel comment = new CommentModel();
+            Comments comment = new Comments();
             comment.CommentText = newComment.UserComment.CommentText;
             comment.CommentTime = DateTime.Now;
             comment.PostId = post;
@@ -164,7 +164,7 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult DeleteComment(int commentId, int post)
         {
-            CommentModel comment = dbRepo.Comments.FirstOrDefault(c => c.CommentId == commentId);
+            Comments comment = dbRepo.Comments.FirstOrDefault(c => c.CommentId == commentId);
             dbRepo.Comments.Remove(comment);
             dbRepo.SaveChanges();
             return RedirectToAction("CurrentPost", "Home", new { postId = post }); ;
@@ -177,30 +177,27 @@ namespace BlogProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPost(PostModel newPost)
+        public ActionResult AddPost(Posts newPost)
         {
-            if (newPost.Title != null && newPost.PostText != null)
-            {
-                PostModel post = new PostModel();
-                post.UserId = GetUserId(User.Identity.Name.ToString());
-                post.Title = newPost.Title;
-                post.PostText = newPost.PostText;
-                post.PostTime = DateTime.Now;
-                dbRepo.Posts.Add(post);
-                dbRepo.SaveChanges();
-                return RedirectToAction("RecentPosts", "Home", new { username = User.Identity.Name.ToString() });
-            }
-            else
+            if (string.IsNullOrEmpty(newPost.Title) || string.IsNullOrEmpty(newPost.PostText))
             {
                 ViewBag.Person = userRepo.Users.First(u => u.Username == User.Identity.Name);
                 return View();
             }
+            Posts post = new Posts();
+            post.UserId = GetUserId(User.Identity.Name.ToString());
+            post.Title = newPost.Title;
+            post.PostText = newPost.PostText;
+            post.PostTime = DateTime.Now;
+            dbRepo.Posts.Add(post);
+            dbRepo.SaveChanges();
+            return RedirectToAction("RecentPosts", "Home", new { username = User.Identity.Name.ToString() });
         }
 
         [HttpPost]
         public ActionResult DeletePost(int postId)
         {
-            PostModel post = dbRepo.Posts.FirstOrDefault(p => p.PostId == postId);
+            Posts post = dbRepo.Posts.FirstOrDefault(p => p.PostId == postId);
             if (dbRepo.Comments.Count(c => c.PostId == postId) == 0)
             {
                 dbRepo.Posts.Remove(post);
@@ -209,7 +206,7 @@ namespace BlogProject.Controllers
             }
             else
             {
-                List<CommentModel> commentBase = dbRepo.Comments.Where(c => c.PostId == postId).ToList();
+                List<Comments> commentBase = dbRepo.Comments.Where(c => c.PostId == postId).ToList();
                 foreach (var c in commentBase)
                 {
                     dbRepo.Comments.Remove(c);

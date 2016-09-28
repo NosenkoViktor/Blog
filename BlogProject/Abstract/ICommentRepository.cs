@@ -9,6 +9,6 @@ namespace BlogProject.Abstract
 {
     public interface ICommentRepository
     {
-        IQueryable<CommentModel> Comments { get; }
+        IQueryable<Comments> Comments { get; }
     }
 }

@@ -37,7 +37,7 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult Delete(int userId)
         {
-            UserModel user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
+            Users user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
             if (user.Roles != "administrator")
             {
                 if (dbRepo.Comments.Count(u => u.UserId == userId) == 0 && dbRepo.Posts.Count(u => u.UserId == userId) == 0)
@@ -49,16 +49,16 @@ namespace BlogProject.Controllers
                 }
                 else
                 {
-                    List<CommentModel> commentBase = dbRepo.Comments.Where(u => u.UserId == userId).ToList();
+                    List<Comments> commentBase = dbRepo.Comments.Where(u => u.UserId == userId).ToList();
                     foreach (var c in commentBase)
                     {
                         dbRepo.Comments.Remove(c);
                         dbRepo.SaveChanges();
                     }
-                    List<PostModel> postBase = dbRepo.Posts.Where(u => u.UserId == userId).ToList();
+                    List<Posts> postBase = dbRepo.Posts.Where(u => u.UserId == userId).ToList();
                     foreach (var p in postBase)
                     {
-                        List<CommentModel> commentForPost = dbRepo.Comments.Where(u => u.PostId == p.PostId).ToList();
+                        List<Comments> commentForPost = dbRepo.Comments.Where(u => u.PostId == p.PostId).ToList();
                         foreach (var comment in commentForPost)
                         {
                             dbRepo.Comments.Remove(comment);
@@ -83,7 +83,7 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult Save(int userId, string roles)
         {
-            UserModel user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
+            Users user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
             user.Roles = roles;
             dbRepo.Users.Attach(user);
             dbRepo.Entry(user).State = EntityState.Modified;

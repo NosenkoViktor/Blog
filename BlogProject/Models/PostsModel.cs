@@ -5,8 +5,8 @@ using System.Web;
 
 namespace BlogProject.Models
 {
-    public class UserModel
+    public class PostsModel
     {
-        public Users user { get; set; }
+        public Posts post { get; set; }
     }
 }

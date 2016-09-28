@@ -7,27 +7,27 @@
 <table class="user-inform">
         <tr>
             <th>First Name: </th>
-            <th>@Model.FirstName</th>
+            <th>@Model.user.FirstName</th>
         </tr>
         <tr>
             <th>Last Name: </th>
-            <th>@Model.LastName</th>
+            <th>@Model.user.LastName</th>
         </tr>
         <tr>
             <th>Full age: </th>
-            <th>@(Model.Age == 0 ? "Unknown" : Model.Age.ToString())</th>
+            <th>@(Model.user.Age == 0 ? "Unknown" : Model.user.Age.ToString())</th>
         </tr>
         <tr>
             <th>Fone: </th>
-            <th>@(Model.Fone == null ? "Unknown" : Model.Fone)</th>
+            <th>@(Model.user.Fone == null ? "Unknown" : Model.user.Fone)</th>
         </tr>
         <tr>
             <th>Mail: </th>
-            <th>@Model.Email</th>
+            <th>@Model.user.Email</th>
         </tr>
         <tr>
             <th>Skype: </th>
-            <th>@(Model.Skype == null ? "Unknown" : Model.Skype)</th>
+            <th>@(Model.user.Skype == null ? "Unknown" : Model.user.Skype)</th>
         </tr>
 </table>
 @if (User.Identity.IsAuthenticated && User.Identity.Name == ViewContext.RouteData.Values["username"].ToString())

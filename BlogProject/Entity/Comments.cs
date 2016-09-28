@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace BlogProject.Models
 {
     [Table("Comments")]
-    public class CommentModel
+    public class Comments
     {
         public int UserId { get; set; }
         [HiddenInput(DisplayValue = false)]

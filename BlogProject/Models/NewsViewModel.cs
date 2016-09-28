@@ -7,7 +7,7 @@ namespace BlogProject.Models
 {
     public class NewsViewModel
     {
-        public IEnumerable<PostModel> PostView { get; set; }
-        public IEnumerable<UserModel> UserView { get; set; }
+        public IEnumerable<Posts> PostView { get; set; }
+        public IEnumerable<Users> UserView { get; set; }
     }
 }

@@ -33,19 +33,7 @@
             <div class="admin-page">@Html.ActionLink("Administrator page", "Index", "Admin")</div>
             }
             <div class="menu">
-                <ul>
-                    <li @CurrentItem("News")>@Html.ActionLink("News", "News", "Home", new { username = ViewBag.Person.Username }, null)</li>
-                    <li @CurrentItem("RecentPosts")>@Html.ActionLink("Recent posts", "RecentPosts", "Home", new { username = ViewBag.Person.Username }, null)</li>
-                    <li @CurrentItem("Arhive")>@Html.ActionLink("Arhive", "Arhive", "Home", new { username = ViewBag.Person.Username }, null)</li>
-                    <li @CurrentItem("Information")>@Html.ActionLink("Information", "Information", "Home", new { username = ViewBag.Person.Username }, null)</li>
-                    @helper CurrentItem(String item)
-                    {
-                        if (item == ViewContext.RouteData.Values["action"].ToString())
-                        {
-                             @:class="selected"
-                        }
-                    }
-                </ul>
+                @Html.Partial("_MenuPartial")
             </div>
             <div class="search">
                 @Html.Partial("_SearchPartial")
@@ -57,11 +45,6 @@
         </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(".menu").click(function () {
-            $(this).parent.addClass("selected");
-        });
-    </script>
 </body>
 </html>
 

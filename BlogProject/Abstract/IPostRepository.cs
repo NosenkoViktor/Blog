@@ -9,6 +9,6 @@ namespace BlogProject.Abstract
 {
     public interface IPostRepository
     {
-        IQueryable<PostModel> Posts { get; }
+        IQueryable<Posts> Posts { get; }
     }
 }

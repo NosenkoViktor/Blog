@@ -121,6 +121,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entity\Likes.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -133,12 +134,16 @@
     <Compile Include="Models\AccountModels\LogInModel.cs" />
     <Compile Include="Models\AccountModels\RegisterUserModel.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
-    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Entity\Comments.cs" />
+    <Compile Include="Models\CommentsModel.cs" />
     <Compile Include="Models\CurrentPostModel.cs" />
+    <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
-    <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Entity\Posts.cs" />
+    <Compile Include="Models\PostsModel.cs" />
     <Compile Include="Models\PostsViewModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Entity\Users.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -205,6 +210,8 @@
     <Content Include="Views\Home\AddPost.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\SearchResult.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Home\_LikesFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

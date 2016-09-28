@@ -7,6 +7,6 @@ namespace BlogProject.Models
 {
     public class AdminViewModel
     {
-        public IEnumerable<UserModel> Users { get; set; }
+        public IEnumerable<Users> Users { get; set; }
     }
 }

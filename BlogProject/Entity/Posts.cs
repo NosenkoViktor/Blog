@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace BlogProject.Models
 {
     [Table("Posts")]
-    public class PostModel
+    public class Posts
     {
         [HiddenInput(DisplayValue = false)]
         public int UserId { get; set; }
@@ -23,12 +23,6 @@ namespace BlogProject.Models
 
         [Required(ErrorMessage = "Enter post text please")]
         public string PostText { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public int Like { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public int Dislike { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public DateTime PostTime { get; set; }

@@ -25,8 +25,7 @@
                     <p>@p.PostText.Substring(0, 700) ... </p>  
                 }
                 <div class="like">
-                    <img src="../../Content/images/like.png"> @p.Like.ToString()
-                    <img src="../../Content/images/dislike.png"> @p.Dislike.ToString()
+                    @Html.Partial("_LikesFormPartial")
                 </div>
                 <hr/>
     }
