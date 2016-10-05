@@ -6,8 +6,10 @@ using System.Web;
 
 namespace BlogProject.Models
 {
-    public class UserModel
+    public class AdminModel
     {
         public Users User { get; set; }
+        public IEnumerable<Comments> Comments { get; set; }
+        public IEnumerable<Posts> Posts { get; set; }
     }
 }

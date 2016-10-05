@@ -7,13 +7,13 @@ using System.Web;
 
 namespace BlogProject.Concrete
 {
-    public class EFUserRepository : GenericRepository<EFDbContext, Users>
+    public class EFLikeRepository : GenericRepository<EFDbContext, Likes>
     {
         private EFDbContext context = new EFDbContext();
 
-        public IQueryable<Users> Users
+        public IQueryable<Likes> Likes
         {
-            get { return context.Users; }
+            get { return context.Likes; }
         }
     }
 }

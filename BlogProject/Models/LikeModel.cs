@@ -8,6 +8,6 @@ namespace BlogProject.Models
 {
     public class LikeModel
     {
-        public IQueryable<Likes> Likes { get; set; }
+        public Likes Like { get; set; }
     }
 }

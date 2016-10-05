@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BlogProject.Models
+namespace BlogProject.Entity
 {
     [Table("Comments")]
     public class Comments

@@ -1,4 +1,5 @@
 ﻿using BlogProject.Concrete;
+using BlogProject.Entity;
 using BlogProject.Models;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,17 @@ namespace BlogProject.Controllers
 {
     public class AdminController : Controller
     {
-        private EFDbContext dbRepo;
         private EFUserRepository userRepo;
+        private EFPostRepository postRepo;
+        private EFCommentRepository commentRepo;
+        private AdminModel adminModel;
 
-        public AdminController(EFDbContext dbRepository, EFUserRepository userRepository)
+        public AdminController(EFUserRepository userRepository, AdminModel adminInfo, EFPostRepository postRepository, EFCommentRepository commentRepository)
         {
-            dbRepo = dbRepository;
             userRepo = userRepository;
+            postRepo = postRepository;
+            commentRepo = commentRepository;
+            adminModel = adminInfo;
         }
 
         public ActionResult Index()
@@ -37,45 +42,40 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult Delete(int userId)
         {
-            Users user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
-            if (user.Roles != "administrator")
+            Users user = userRepo.Users.FirstOrDefault(u => u.ID == userId);
+            if (adminModel.User.Roles != "administrator")
             {
-                if (dbRepo.Comments.Count(u => u.UserId == userId) == 0 && dbRepo.Posts.Count(u => u.UserId == userId) == 0)
+                if (commentRepo.Comments.Count(u => u.UserId == userId) == 0 && postRepo.Posts.Count(u => u.UserId == userId) == 0)
                 {
-                    dbRepo.Users.Remove(user);
-                    dbRepo.SaveChanges();
-                    TempData["message"] = "User whith the username: <<" + user.Username.ToString() + ">> has been successfully removed.";
+                    userRepo.Delete(user);
+                    TempData["message"] = "User whith the username: <<" + adminModel.User.Username.ToString() + ">> has been successfully removed.";
                     return RedirectToAction("Index", "Admin");
                 }
                 else
                 {
-                    List<Comments> commentBase = dbRepo.Comments.Where(u => u.UserId == userId).ToList();
-                    foreach (var c in commentBase)
+                    adminModel.Comments = commentRepo.Comments.Where(u => u.UserId == userId);
+                    foreach (var c in adminModel.Comments)
                     {
-                        dbRepo.Comments.Remove(c);
-                        dbRepo.SaveChanges();
+                        commentRepo.Delete(c);
                     }
-                    List<Posts> postBase = dbRepo.Posts.Where(u => u.UserId == userId).ToList();
-                    foreach (var p in postBase)
+                    adminModel.Posts = postRepo.Posts.Where(u => u.UserId == userId).ToList();
+                    foreach (var p in adminModel.Posts)
                     {
-                        List<Comments> commentForPost = dbRepo.Comments.Where(u => u.PostId == p.PostId).ToList();
-                        foreach (var comment in commentForPost)
+                        adminModel.Comments = commentRepo.Comments.Where(u => u.PostId == p.PostId);
+                        foreach (var comment in adminModel.Comments)
                         {
-                            dbRepo.Comments.Remove(comment);
-                            dbRepo.SaveChanges();
+                            commentRepo.Delete(comment);
                         }
-                        dbRepo.Posts.Remove(p);
-                        dbRepo.SaveChanges();
+                        postRepo.Delete(p);
                     }
-                    dbRepo.Users.Remove(user);
-                    dbRepo.SaveChanges();
-                    TempData["message"] = "User whith the username: <<" + user.Username.ToString() + ">> has been successfully removed.";
+                    userRepo.Delete(user);
+                    TempData["message"] = "User whith the username: <<" + adminModel.User.Username.ToString() + ">> has been successfully removed.";
                     return RedirectToAction("Index", "Admin");
                 }
             }
             else
             {
-                TempData["message"] = "You can not delete user with the username: <<" + user.Username.ToString() + ">> it is an administrator.";
+                TempData["message"] = "You can not delete user with the username: <<" + adminModel.User.Username.ToString() + ">> it is an administrator.";
                 return RedirectToAction("Index", "Admin");
             }
         }
@@ -83,11 +83,9 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult Save(int userId, string roles)
         {
-            Users user = dbRepo.Users.FirstOrDefault(u => u.ID == userId);
+            Users user = userRepo.Users.FirstOrDefault(u => u.ID == userId);
             user.Roles = roles;
-            dbRepo.Users.Attach(user);
-            dbRepo.Entry(user).State = EntityState.Modified;
-            dbRepo.SaveChanges();
+            userRepo.Edit(user);
             TempData["message"] = "User whith the username: <<" + user.Username.ToString() + ">> has been successfully saved.";
             return RedirectToAction("Index", "Admin");
         }

@@ -39,8 +39,14 @@
                 }            
         </div>
         <div class="like">
-                    @Html.Partial("_LikesFormPartial") 
-                </div>
+            @using (Html.BeginForm("PutLike", "Home", FormMethod.Post))
+            { 
+                @Html.Hidden("postId", p.PostId);
+                @Html.Hidden("returnUrl", Request.RawUrl.ToString());
+                <div class="likes-button"><input type="submit" value=""/></div>
+            } 
+            <p>@Model.Likes.Count(u => u.PostID == p.PostId)</p>
+        </div>
         <hr />
     }
 </div>

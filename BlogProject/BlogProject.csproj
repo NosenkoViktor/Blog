@@ -111,11 +111,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IUserRepository.cs" />
-    <Compile Include="Abstract\IPostRepository.cs" />
-    <Compile Include="Abstract\ICommentRepository.cs" />
+    <Compile Include="Abstract\IGenericRepository.cs" />
+    <Compile Include="Concrete\GenericRepository.cs" />
     <Compile Include="Concrete\EFCommentRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFLikeRepository.cs" />
     <Compile Include="Concrete\EFPostRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -137,6 +137,7 @@
     <Compile Include="Entity\Comments.cs" />
     <Compile Include="Models\CommentsModel.cs" />
     <Compile Include="Models\CurrentPostModel.cs" />
+    <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Entity\Posts.cs" />
@@ -211,7 +212,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\SearchResult.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
-    <Content Include="Views\Home\_LikesFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

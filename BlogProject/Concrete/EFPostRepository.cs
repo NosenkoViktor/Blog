@@ -1,5 +1,5 @@
 ﻿using BlogProject.Abstract;
-using BlogProject.Models;
+using BlogProject.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BlogProject.Concrete
 {
-    public class EFPostRepository : IPostRepository
+    public class EFPostRepository : GenericRepository<EFDbContext, Posts>
     {
         private EFDbContext context = new EFDbContext();
 

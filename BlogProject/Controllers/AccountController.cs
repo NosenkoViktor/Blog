@@ -1,4 +1,5 @@
 ﻿using BlogProject.Concrete;
+using BlogProject.Entity;
 using BlogProject.Models;
 using BlogProject.Models.AccountModels;
 using System;
@@ -12,13 +13,13 @@ namespace BlogProject.Controllers
 {
     public class AccountController : Controller
     {
-        private Users user;
-        private EFDbContext dbRepo;
+        private UserModel userModel;
+        private EFUserRepository userRepo;
 
-        public AccountController(Users user, EFDbContext dbRepository)
+        public AccountController(UserModel user, EFUserRepository userRepository)
         {
-            this.user = user;
-            dbRepo = dbRepository;
+            userModel = user;
+            userRepo = userRepository;
         }
 
         public ActionResult Register()
@@ -39,22 +40,22 @@ namespace BlogProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterUserModel model)
+        public ActionResult Register(RegisterUserModel info)
         {
-            int count = dbRepo.Users.Count(u => u.Username == model.Username);
+            Users user = new Users();
+            int count = userRepo.Users.Count(u => u.Username == info.Username);
             if (ModelState.IsValid && count == 0)
             {
-                user.Username = model.Username;
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.Email = model.Email;
-                user.Password = model.Password;
+                user.Username = info.Username;
+                user.FirstName = info.FirstName;
+                user.LastName = info.LastName;
+                user.Email = info.Email;
+                user.Password = info.Password;
                 user.Roles = "user";
-                dbRepo.Users.Add(user);
-                dbRepo.SaveChanges();
-                FormsAuthentication.SetAuthCookie(model.Username, true);
-                string actionString = "Information/" + model.Username;
-                return RedirectToAction(actionString, "Home", model.Username);
+                userRepo.Add(user);
+                FormsAuthentication.SetAuthCookie(info.Username, true);
+                string actionString = "Information/" + info.Username;
+                return RedirectToAction(actionString, "Home", info.Username);
             }
             else
             {
@@ -66,10 +67,11 @@ namespace BlogProject.Controllers
         [HttpPost]
         public ActionResult LogIn(LogInModel model)
         {
-            int count = dbRepo.Users.Count(u => u.Username == model.Username);
+            int count = userRepo.Users.Count(u => u.Username == model.Username);
             if (ModelState.IsValid && count == 1)
             {
-                Users currentUser = dbRepo.Users.First(u => u.Username == model.Username);
+                Users currentUser = new Users();
+                currentUser = userRepo.Users.First(u => u.Username == model.Username);
                 if (currentUser.Password == model.Password)
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, true);
